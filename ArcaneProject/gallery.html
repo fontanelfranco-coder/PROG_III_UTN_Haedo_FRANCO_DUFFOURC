@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARCANE — Visual Archives | Gallery</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Shared Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="gallery-page">
+
+    <!-- 1. FULLSCREEN CANVAS BACKDROP (Where the artwork lives) -->
+    <div id="gallery-stage" class="gallery-stage">
+        <!-- The active artwork is rendered here -->
+        <img id="gallery-image" src="" alt="Arcane Cinematic Art" class="active-art">
+    </div>
+
+    <!-- 2. HUD: TOP BAR (Fades on inactivity) -->
+    <header class="gallery-hud hud-top">
+        <div class="logo">
+            <span class="gold-orb"></span>
+            <a href="Arcane_Home.html" class="logo-link"><h1>ARCANE</h1></a>
+        </div>
+
+        <nav class="main-nav" aria-label="Main Navigation">
+            <ul>
+                <li><a href="gallery.html" class="active-nav">GALLERIA</a></li>
+
+                <li class="has-dropdown">
+                    <a href="character_index.html">PERSONAJES <span class="arrow">▾</span></a>
+                    <ul class="dropdown">
+                        <li><a href="character_index.html#jinx">Jinx</a></li>
+                        <li><a href="character_index.html#vi">Vi</a></li>
+                        <li><a href="character_index.html#caitlyn">Caitlyn</a></li>
+                    </ul>
+                </li>
+
+                <li class="has-dropdown">
+                    <a href="regions_index.html">REGIONES <span class="arrow">▾</span></a>
+                    <ul class="dropdown">
+                        <li><a href="regions_index.html#piltover">Piltover</a></li>
+                        <li><a href="regions_index.html#zaun">Zaun</a></li>
+                        <li><a href="regions_index.html#noxus">Noxus</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="contact.html">CONTACTO</a></li>
+            </ul>
+        </nav>
+
+        <div class="gallery-top-actions">
+            <!-- Fullscreen API toggle -->
+            <button id="fullscreen-btn" class="hud-btn" type="button" title="Toggle Fullscreen (Key: F)">
+                <span class="btn-icon">⛶</span>
+                <span class="btn-label">FULLSCREEN</span>
+            </button>
+
+            <!-- Contextual Gallery Theme Audio -->
+            <button id="music-btn" class="music-toggle-btn" type="button" aria-label="Toggle Audio">
+                <span class="music-icon">🎵</span>
+                <span class="music-text">MUSICA</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- 3. HUD: NAVIGATION ARROWS (Left & Right) -->
+    <button id="prev-btn" class="gallery-hud nav-arrow arrow-left" aria-label="Previous artwork">
+        <span>&#10229;</span>
+    </button>
+    <button id="next-btn" class="gallery-hud nav-arrow arrow-right" aria-label="Next artwork">
+        <span>&#10230;</span>
+    </button>
+
+    <!-- 4. HUD: BOTTOM CAPTION & COUNTER (Fades on inactivity) -->
+    <footer class="gallery-hud hud-bottom">
+        <div class="caption-container">
+            <div class="caption-meta">
+                <span id="slide-index" class="slide-index">01 / 10</span>
+                <span class="caption-divider">·</span>
+                <span class="caption-tag">ARCHIVO DE IMAGENES</span>
+            </div>
+            <h2 id="slide-title" class="slide-title">Cargando titulo...</h2>
+            <p id="slide-desc" class="slide-desc">Cargando descripcion...</p>
+        </div>
+    </footer>
+
+    <!-- 5. OPTIONAL GALLERY AUDIO -->
+    <audio id="bg-audio" loop preload="none">
+        <source src="Music\Fantastic (Instrumental) - King Princess.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- 6. GALLERY LOGIC SCRIPT -->
+    <script>
+        /* ==========================================================================
+           GALLERY DATA STORE (10 SLIDES READY FOR YOUR IMAGES & DESCRIPTIONS)
+           ========================================================================== */
+        const galleryData = [
+            {
+                image: "Images/Gallery/art-01.jpg",
+                title: "La ciudad del Progreso.",
+                description: "Luz se refracta a travez de la elegante arquitectura de Piltover."
+            },
+            {
+                image: "Images/Gallery/art-02.jpg",
+                title: "Ecos de la Ciudad Subterránea.",
+                description: "Niebla neón y vapores químicos cubren los callejones estrechos que rodean La ultima gota en Zaun."
+            },
+            {
+                image: "Images/Gallery/art-03.jpg",
+                title: "Dirigibles.",
+                description: "Gracias al Hextech, una nueva era de transporte se inicia."
+            },
+            {
+                image: "Images/Gallery/art-04.jpg",
+                title: "El terruño de los Kiramman.",
+                description: "Caitlynn crecio en la abundacia, nada fuera de su alcance."
+            },
+            {
+                image: "Images/Gallery/art-05.jpg",
+                title: "Mural del viento y la grieta.",
+                description: "La gente de Zaun venera a Janna desde su fundacion, esta creencia cambio con el tiempo, pero nunca ceso."
+            },
+            {
+                image: "Images/Gallery/art-06.jpg",
+                title: "Escondite.",
+                description: "Mas de una conversacion crucial ocurrio just en este pequeño rincón."
+            },
+            {
+                image: "Images/Gallery/art-07.jpg",
+                title: "Ionia.",
+                description: "Poco se sabe de las tierras primogenias, solo que Noxus estuvo allí, y dejo su marca."
+            },
+            {
+                image: "Images/Gallery/art-08.jpg",
+                title: "Jardines.",
+                description: "Piltover tiene mucho mas verde que Zaun, para ellos nisiquiera es un lujo, sino un estilo de vida."
+            },
+            {
+                image: "Images/Gallery/art-09.jpg",
+                title: "La colonia.",
+                description: "En el punto mas remoto de Zaun, Viktor crearia una pequeña comunidad."
+            },
+            {
+                image: "Images/Gallery/art-10.jpg",
+                title: "La ciudad quebrada",
+                description: "Jayce recibe una vision de como se veria su fracazo."
+            }
+        ];
+
+        let currentIndex = 0;
+        const totalSlides = galleryData.length;
+
+        // DOM Element Cache
+        const imgElement = document.getElementById('gallery-image');
+        const titleElement = document.getElementById('slide-title');
+        const descElement = document.getElementById('slide-desc');
+        const indexElement = document.getElementById('slide-index');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const fullscreenBtn = document.getElementById('fullscreen-btn');
+
+        // Function: Render Current Slide
+        function loadSlide(index) {
+            const data = galleryData[index];
+            
+            // Subtle fade transition for the image swap
+            imgElement.style.opacity = '0';
+            
+            setTimeout(() => {
+                imgElement.src = data.image;
+                titleElement.textContent = data.title;
+                descElement.textContent = data.description;
+                indexElement.textContent = `${String(index + 1).padStart(2, '0')} / ${String(totalSlides).padStart(2, '0')}`;
+                imgElement.style.opacity = '1';
+            }, 200);
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            loadSlide(currentIndex);
+        }
+
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+            loadSlide(currentIndex);
+        }
+
+        prevBtn.addEventListener('click', prevSlide);
+        nextBtn.addEventListener('click', nextSlide);
+
+        // Keyboard Controls
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+            if (e.key.toLowerCase() === 'f') toggleFullscreen();
+        });
+
+        // Fullscreen Toggle
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(() => {});
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        }
+        fullscreenBtn.addEventListener('click', toggleFullscreen);
+
+        // ==========================================================================
+        // AUTO-HIDE HUD LOGIC (Fades elements after 3.5s of inactivity)
+        // ==========================================================================
+        let hudTimeout;
+        const hudElements = document.querySelectorAll('.gallery-hud');
+
+        function showHUD() {
+            document.body.classList.remove('hud-hidden');
+            clearTimeout(hudTimeout);
+
+            // Hide HUD after 3.5 seconds of repose
+            hudTimeout = setTimeout(() => {
+                document.body.classList.add('hud-hidden');
+            }, 3500);
+        }
+
+        // Listen for activity triggers (mouse, touch, key)
+        ['mousemove', 'mousedown', 'touchstart', 'keydown'].forEach(evt => {
+            window.addEventListener(evt, showHUD, { passive: true });
+        });
+
+        // ==========================================================================
+        // AUDIO CONTROLLER
+        // ==========================================================================
+        const musicBtn = document.getElementById('music-btn');
+        const audio = document.getElementById('bg-audio');
+        const musicText = musicBtn.querySelector('.music-text');
+
+        musicBtn.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play();
+                musicText.textContent = "PAUSE SOUND";
+                musicBtn.classList.add('playing');
+            } else {
+                audio.pause();
+                musicText.textContent = "PLAY SOUND";
+                musicBtn.classList.remove('playing');
+            }
+        });
+
+        // Initialize First Slide & HUD Timer on Load
+        loadSlide(currentIndex);
+        showHUD();
+    </script>
+</body>
+</html>
