@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARCANE — Champions & Rebels | Characters</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Shared Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="characters-page">
+
+    <!-- 1. FLOATING HEADER & NAVIGATION -->
+    <header class="site-header">
+        <div class="logo">
+            <span class="gold-orb"></span>
+            <a href="index.html" class="logo-link"><h1>ARCANE</h1></a>
+        </div>
+
+        <nav class="main-nav" aria-label="Main Navigation">
+            <ul>
+                <li><a href="gallery.html">GALLERIA</a></li>
+
+                <li class="has-dropdown">
+                    <a href="character_index.html" class="active-nav">PERSONAJES <span class="arrow">▾</span></a>
+                    <ul class="dropdown">
+                        <li><a href="character_index.html#jinx">Jinx</a></li>
+                        <li><a href="character_index.html#vi">Vi</a></li>
+                        <li><a href="character_index.html#caitlyn">Caitlyn</a></li>
+                    </ul>
+                </li>
+
+                <li class="has-dropdown">
+                    <a href="regions_index.html">REGIONES <span class="arrow">▾</span></a>
+                    <ul class="dropdown">
+                        <li><a href="regions_index.html#piltover">Piltover</a></li>
+                        <li><a href="regions_index.html#zaun">Zaun</a></li>
+                        <li><a href="regions_index.html#noxus">Noxus</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="contact.html">CONTACTO</a></li>
+            </ul>
+        </nav>
+
+        <!-- Dynamic Character Music Toggle -->
+        <div class="header-actions">
+            <button id="music-btn" class="music-toggle-btn is-hidden" type="button" aria-label="Toggle Audio">
+                <span class="music-icon">🎵</span>
+                <span id="music-label" class="music-text">PLAY SOUND</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- 2. MAIN VIEW CONTAINER -->
+    <main class="characters-main">
+
+        <!-- VIEW A: 3-PANEL ROSTER SELECTOR (Visible when no character is selected) -->
+        <section id="roster-view" class="roster-view">
+            <div class="roster-header">
+                <span class="eyebrow-tag">LOS PERSONAJES DE ARCANE</span>
+                <h2 class="roster-title">Selecciona un personaje para inspeccionarlo.</h2>
+            </div>
+
+            <div class="cards-grid">
+                <!-- Panel 1: Jinx -->
+                <a href="#jinx" class="character-card card-jinx">
+                    <div class="card-bg-overlay"></div>
+                    <!-- Image container placeholder -->
+                    <div class="card-img-wrap">
+                        <img src="Images\thumbs\jinxthumb.jpg" alt="Jinx preview" class="card-thumb">
+                    </div>
+                    <div class="card-info">
+                        <span class="card-role zaun-accent">LA BALA PERDIDA</span>
+                        <h3>JINX</h3>
+                        <p>Anarquista y brillante ingeniera</p>
+                    </div>
+                </a>
+
+                <!-- Panel 2: Vi -->
+                <a href="#vi" class="character-card card-vi">
+                    <div class="card-bg-overlay"></div>
+                    <div class="card-img-wrap">
+                        <img src="Images\thumbs\images.jpg" alt="Vi preview" class="card-thumb">
+                    </div>
+                    <div class="card-info">
+                        <span class="card-role hextech-accent">LA PROTECTORA DE ZAUN</span>
+                        <h3>VI</h3>
+                        <p>Matona de la Ciudad Subterránea</p>
+                    </div>
+                </a>
+
+                <!-- Panel 3: Caitlyn -->
+                <a href="#caitlyn" class="character-card card-caitlyn">
+                    <div class="card-bg-overlay"></div>
+                    <div class="card-img-wrap">
+                        <img src="Images\thumbs\caitthumb.jpg" alt="Caitlyn preview" class="card-thumb">
+                    </div>
+                    <div class="card-info">
+                        <span class="card-role piltover-accent">LA SHERIFF DE PILTOVER</span>
+                        <h3>CAITLYN</h3>
+                        <p>Heredera Kiramman & habil tiradora</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- VIEW B: EXPANDED CHARACTER DOSSIER (Visible when #jinx, #vi, or #caitlyn is in URL) -->
+        <section id="dossier-view" class="dossier-view" hidden>
+            <div class="dossier-nav-bar">
+                <a href="character_index.html#" class="back-btn">&larr; VOLVER A LA LISTA</a>
+                <div class="dossier-quick-tabs">
+                    <a href="#jinx" id="tab-jinx">JINX</a>
+                    <a href="#vi" id="tab-vi">VI</a>
+                    <a href="#caitlyn" id="tab-caitlyn">CAITLYN</a>
+                </div>
+            </div>
+
+            <article class="dossier-card">
+                <!-- Large Character Portrait -->
+                <div class="dossier-media">
+                    <img id="dossier-img" src="" alt="Character Portrait">
+                </div>
+
+                <!-- Lore Briefing -->
+                <div class="dossier-details">
+                    <span id="dossier-faction" class="eyebrow-tag">FACCION</span>
+                    <h2 id="dossier-name" class="dossier-title">Nombre</h2>
+                    <p id="dossier-alias" class="dossier-alias">Alias</p>
+                    
+                    <div class="dossier-divider"></div>
+                    
+                    <div class="dossier-body">
+                        <p id="dossier-lore-1">Bio paragraph 1...</p>
+                        <p id="dossier-lore-2">Bio paragraph 2...</p>
+                    </div>
+
+                    <div class="dossier-traits">
+                        <div>
+                            <span class="trait-label">ARMAMENTO</span>
+                            <span id="dossier-weapon" class="trait-val">Weapon details</span>
+                        </div>
+                        <div>
+                            <span class="trait-label">STATUS</span>
+                            <span id="dossier-status" class="trait-val">Active</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+    </main>
+
+    <!-- 3. FOOTER -->
+    <footer class="site-footer">
+        <p>PROYECTO FAN NO OFICIAL · NO AFILIADO CON RIOT GAMES NI FORTICHE PRODUCTION</p>
+    </footer>
+
+    <!-- 4. AUDIO ELEMENT -->
+    <audio id="character-audio" loop preload="none">
+        <source id="audio-source" src="" type="audio/mpeg">
+    </audio>
+
+    <!-- 5. ARCHITECTURAL SCRIPT (Data Store, Hash Router & Audio Crossfade) -->
+    <script>
+        /* ==========================================================================
+           CHARACTER DATA REPOSITORY (IMAGES, LORE, AUDIO TRACKS)
+           ========================================================================== */
+            const charactersData = {
+                jinx: {
+                    name: "Jinx",
+                    alias: "La bala perdida/Powder",
+                    faction: "ZAUN",
+                    accentClass: "zaun-theme",
+                    // Two pictures: Card thumbnail and Detailed full portrait
+                    thumbImg: "Images/thumbs/Jinx2.jpg",
+                    portraitImg: "Images/thumbs/Jinx2.jpg",
+                    audioTrack: "Music/Get Jinxed (Instrumental).mp3",
+                    audioLabel: "REPRODUCIR TEMA DE JINX",
+                    lore1: "Antaño una chica dulce y torpe llamada Powder que deseaba desesperadamente ayudar a su familia, el trauma y la traición la transformaron en Jinx: una terrorista brillante y maníaca cuyos explosivos improvisados ​​y armas pesadas dejan un rastro de devastación de colores neón.",
+                    lore2: "Acosada por voces alucinatorias de su pasado e impulsada por inyecciones erráticas de Brillo, el profundo amor de Jinx por su hermana Vi choca destructivamente con su lealtad a la despiadada rebelión de Silco.",   
+                    weapon: "Carahueso (Lanza-Cohetes), Pow-Pow (Minigun), Granadas y pistolas de mano",
+                    status: "Impredecible"
+                },
+                vi: {
+                    name: "Vi",
+                    alias: "LA MATONA DE ZAUN/Violet",
+                    faction: "ZAUN/PILTOVER",
+                    accentClass: "hextech-theme",
+                    thumbImg: "Images/thumbs/vithumb.jpg",
+                    portraitImg: "Images/thumbs/vithumb.jpg",
+                    audioTrack: "Music/Cocktail Molotov (Instrumental) - ZAND.mp3",
+                    audioLabel: "REPRODUCIR TEMA DE VI",
+                    lore1: "Criada en las duras calles de la ciudad baja, Vi aprendió a sobrevivir gracias a sus puños y a su instinto callejero. Protectora feroz de su hermana Powder, cargó con la responsabilidad de liderar a los niños huérfanos de la calle de The Last Drop.",         
+                    lore2: "Tras años sobreviviendo a la brutal prisión de Stillwater, Vi se alía con la agente de Piltover Caitlyn Kiramman. Armada con los robustos guanteletes Atlas de Jayce, lucha por llevar la paz a las ciudades gemelas y salvar el alma de su hermana.",
+                    weapon: "Gauntlets Atlas Hextech (Puños de Combate Mejorados)",
+                    status: "Repartiendo palizas.",
+                },
+                caitlyn: {
+                    name: "Caitlyn",
+                    alias: "La Sheriff de Piltover/Pastelito",
+                    faction: "PILTOVER",
+                    accentClass: "piltover-theme",
+                    thumbImg: "Images/thumbs/cait2.jpg",
+                    portraitImg: "Images/thumbs/cait2.jpg", 
+                    audioTrack: "Music/Caitlyn, The Sheriff of Piltover _ Champion Theme - League of Legends.mp3",
+                    audioLabel: "REPRODUCIR TEMA DE CAITLYN",
+                    lore1: "Nacida en una de las casas gobernantes más ricas de Piltover, Caitlyn rechazó el confort aristocrático para perseguir la justicia como Enforcer. Aguda, incorruptible y una francotiradora sin igual, ve más allá de la jerarquía social para encontrar la verdad cruda.",
+                    lore2: "Su investigación sobre la corrupción hextech la obliga a adentrarse en el mundo subterráneo, donde aliarse con Vi pone a prueba su claridad moral y la fuerza a cuestionar la rectitud del Alto Consejo.",
+                    weapon: "Rifle de Precisión Hextech Personalizado",
+                    status: "Investigadora Senior"
+                }
+            };
+
+            // Cache DOM elements
+            const rosterView = document.getElementById('roster-view');
+            const dossierView = document.getElementById('dossier-view');
+            
+            const dossierImg = document.getElementById('dossier-img');
+            const dossierName = document.getElementById('dossier-name');
+            const dossierAlias = document.getElementById('dossier-alias');
+            const dossierFaction = document.getElementById('dossier-faction');
+            const dossierLore1 = document.getElementById('dossier-lore-1');
+            const dossierLore2 = document.getElementById('dossier-lore-2');
+            const dossierWeapon = document.getElementById('dossier-weapon');
+            const dossierStatus = document.getElementById('dossier-status');
+
+            const audio = document.getElementById('character-audio');
+            const musicBtn = document.getElementById('music-btn');
+            const musicLabel = document.getElementById('music-label');
+
+        /* ==========================================================================
+           ROUTER: SWITCHES VIEWS BASED ON URL HASH (#jinx, #vi, #caitlyn)
+           ========================================================================== */
+
+            function handleRouting() {
+                const rawHash = window.location.hash.toLowerCase().replace('#', '');
+
+                if (rawHash && charactersData[rawHash]) {
+                    const char = charactersData[rawHash];
+
+                    // Populate dossier data...
+                    dossierImg.src = char.portraitImg;
+                    dossierImg.alt = char.name;
+                    dossierName.textContent = char.name;
+                    dossierAlias.textContent = char.alias;
+                    dossierFaction.textContent = char.faction;
+                    dossierLore1.textContent = char.lore1;
+                    dossierLore2.textContent = char.lore2;
+                    dossierWeapon.textContent = char.weapon;
+                    dossierStatus.textContent = char.status;
+
+                    // Update active tab buttons...
+                    document.querySelectorAll('.dossier-quick-tabs a').forEach(tab => tab.classList.remove('active-tab'));
+                    const activeTab = document.getElementById(`tab-${rawHash}`);
+                    if (activeTab) activeTab.classList.add('active-tab');
+
+                    // REVEAL THE MUSIC BUTTON ONCE DOSSIER IS OPEN
+                    musicBtn.classList.remove('is-hidden');
+
+                    // Swap Track
+                    loadAndPlayAudio(char.audioTrack, char.audioLabel);
+
+                    // View Toggle
+                    rosterView.hidden = true;
+                    dossierView.hidden = false;
+                } else {
+                    // Show 3-card roster
+                    rosterView.hidden = false;
+                    dossierView.hidden = true;
+
+                    // HIDE THE MUSIC BUTTON ON ROSTER SCREEN
+                    musicBtn.classList.add('is-hidden');
+                    
+                    stopAudio();
+                }
+            }
+
+        /* ==========================================================================
+           AUDIO CONTROLLER
+           ========================================================================== */
+            function loadAndPlayAudio(trackSrc, labelText) {
+                audio.src = trackSrc;
+                musicLabel.textContent = labelText;
+                audio.play().then(() => {
+                    musicBtn.classList.add('playing');
+                }).catch(() => {
+                    // Autoplay was prevented by browser; ready on next click
+                    musicBtn.classList.remove('playing');
+                    musicLabel.textContent = labelText;
+                });
+            }
+
+            function stopAudio() {
+                audio.pause();
+                audio.currentTime = 0;
+                musicBtn.classList.remove('playing');
+                musicBtn.classList.add('is-hidden'); // Keep hidden
+                musicLabel.textContent = "PLAY SOUND";
+            }
+
+            musicBtn.addEventListener('click', () => {
+                if (audio.paused) {
+                    audio.play();
+                    musicBtn.classList.add('playing');
+                } else {
+                    audio.pause();
+                    musicBtn.classList.remove('playing');
+                }
+            });
+
+            // Listen for internal or external link changes (#jinx -> #vi)
+            window.addEventListener('hashchange', handleRouting);
+            window.addEventListener('DOMContentLoaded', handleRouting);
+    </script>
+</body>
+</html>

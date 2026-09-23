@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARCANE — The Divided Realms | World</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Shared Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="regions-page">
+
+    <!-- 1. FLOATING HEADER & NAVIGATION -->
+    <header class="site-header">
+        <div class="logo">
+            <span class="gold-orb"></span>
+            <a href="index.html" class="logo-link"><h1>ARCANE</h1></a>
+        </div>
+
+        <nav class="main-nav" aria-label="Main Navigation">
+            <ul>
+                <li><a href="gallery.html">GALLERIA</a></li>
+
+                <li class="has-dropdown">
+                    <a href="character_index.html">PERSONAJES <span class="arrow">▾</span></a>
+                    <ul class="dropdown">
+                        <li><a href="character_index.html#jinx">Jinx</a></li>
+                        <li><a href="character_index.html#vi">Vi</a></li>
+                        <li><a href="character_index.html#caitlyn">Caitlyn</a></li>
+                    </ul>
+                </li>
+
+                <li class="has-dropdown">
+                    <a href="regions_index.html" class="active-nav">REGIONES <span class="arrow">▾</span></a>
+                    <ul class="dropdown">
+                        <li><a href="regions_index.html#piltover">Piltover</a></li>
+                        <li><a href="regions_index.html#zaun">Zaun</a></li>
+                        <li><a href="regions_index.html#noxus">Noxus</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="contact.html">CONTACTO</a></li>
+            </ul>
+        </nav>
+
+        <!-- Dynamic Regional Music Toggle -->
+        <div class="header-actions">
+            <button id="music-btn" class="music-toggle-btn is-hidden" type="button" aria-label="Toggle Regional Audio">
+                <span class="music-icon">🎵</span>
+                <span id="music-label" class="music-text">MUSICA</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- 2. MAIN VIEW CONTAINER -->
+    <main class="regions-main">
+
+        <!-- VIEW A: 3-PANEL REGION ROSTER (Visible when no hash is selected) -->
+        <section id="roster-view" class="roster-view">
+            <div class="roster-header">
+                <span class="eyebrow-tag">REGIONES NOTABLES</span>
+                <h2 class="roster-title">Selecciona una región para explorar.</h2>
+            </div>
+
+            <div class="cards-grid">
+                <!-- Panel 1: Piltover -->
+                <a href="#piltover" class="character-card region-card">
+                    <div class="card-bg-overlay"></div>
+                    <div class="card-img-wrap">
+                        <img src="Images\thibaud-delaperche-piltover-01.jpg" alt="Piltover architecture" class="card-thumb">
+                    </div>
+                    <div class="card-info">
+                        <span class="card-role piltover-accent">LA CIUDAD DEL PROGRESO</span>
+                        <h3>PILTOVER</h3>
+                        <p>Aristocracia, Comercio & Hextech</p>
+                    </div>
+                </a>
+
+                <!-- Panel 2: Zaun -->
+                <a href="#zaun" class="character-card region-card">
+                    <div class="card-bg-overlay"></div>
+                    <div class="card-img-wrap">
+                        <img src="Images\Zaun_Life_Survives_In_The_Depth.jpg" alt="Zaun Undercity" class="card-thumb">
+                    </div>
+                    <div class="card-info">
+                        <span class="card-role zaun-accent">LA CIUDAD SUBTERRANEA</span>
+                        <h3>ZAUN</h3>
+                        <p>Chemtech, Resistencia & Shimmer</p>
+                    </div>
+                </a>
+
+                <!-- Panel 3: Noxus -->
+                <a href="#noxus" class="character-card region-card">
+                    <div class="card-bg-overlay"></div>
+                    <div class="card-img-wrap">
+                        <img src="Images\Noxus_The_Immortal_Bastion_01.jpg" alt="Noxus Stronghold" class="card-thumb">
+                    </div>
+                    <div class="card-info">
+                        <span class="card-role noxus-accent">EL IMPERIO EXPANSIONISTA</span>
+                        <h3>NOXUS</h3>
+                        <p>Poder Brutal, Política & Conquista</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- VIEW B: DETAILED REGIONAL DOSSIER (Visible with #piltover, #zaun, or #noxus) -->
+        <section id="dossier-view" class="dossier-view" hidden>
+            <div class="dossier-nav-bar">
+                <a href="regions_index.html#" class="back-btn">&larr; VOLVER A REGIONES</a>
+                <div class="dossier-quick-tabs">
+                    <a href="#piltover" id="tab-piltover">PILTOVER</a>
+                    <a href="#zaun" id="tab-zaun">ZAUN</a>
+                    <a href="#noxus" id="tab-noxus">NOXUS</a>
+                </div>
+            </div>
+
+            <article class="dossier-card">
+                <!-- Large Landscape / Regional Art -->
+                <div class="dossier-media">
+                    <img id="dossier-img" src="" alt="Regional Vista">
+                </div>
+
+                <!-- Lore & Historical Briefing -->
+                <div class="dossier-details">
+                    <span id="dossier-tag" class="eyebrow-tag">TERRITORY CLASSIFICATION</span>
+                    <h2 id="dossier-name" class="dossier-title">Region Name</h2>
+                    <p id="dossier-title-desc" class="dossier-alias">Title or Designation</p>
+                    
+                    <div class="dossier-divider"></div>
+                    
+                    <div class="dossier-body">
+                        <p id="dossier-lore-1">Historical lore paragraph 1...</p>
+                        <p id="dossier-lore-2">Relevance to the conflict paragraph 2...</p>
+                    </div>
+
+                    <div class="dossier-traits">
+                        <div>
+                            <span class="trait-label">ENTE GOBERNANTE</span>
+                            <span id="dossier-ruler" class="trait-val">Governing Body</span>
+                        </div>
+                        <div>
+                            <span class="trait-label">RECURSO PRINCIPAL</span>
+                            <span id="dossier-commodity" class="trait-val">Resource</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+    </main>
+
+    <!-- 3. FOOTER -->
+    <footer class="site-footer">
+        <p>PROYECTO FAN NO OFICIAL · NO AFILIADO CON RIOT GAMES NI FORTICHE PRODUCTION</p>
+    </footer>
+
+    <!-- 4. REGIONAL AUDIO PLAYER -->
+    <audio id="region-audio" loop preload="none">
+        <source id="audio-source" src="" type="audio/mpeg">
+    </audio>
+
+    <!-- 5. REGIONAL LOGIC & ROUTER SCRIPT -->
+    <script>
+        /* ==========================================================================
+           REGIONAL DATA REPOSITORY (IMAGES, LORE, AUDIO TRACKS)
+           ========================================================================== */
+        const regionsData = {
+            piltover: {
+                name: "Piltover",
+                titleDesc: "La ciudad de la progresión y la invención",
+                tag: "UTOPIA METROPOLITANA · CAPITAL COMERCIAL",
+                thumbImg: "Images/thumbs/Screenshot 2026-09-22 191341.jpg",
+                landscapeImg: "Images/thumbs/Screenshot 2026-09-22 191341.jpg",
+                audioTrack: "Music/piltover_theme.mp3",
+                audioLabel: "REPRODUCIR TEMA DE PILTOVER",
+                lore1: "Situada majestuosamente sobre el Cañón Hundido, Piltover se erige como la principal capital cultural y comercial de Runaterra. Sus doradas agujas de estilo Art Déco y sus impecables bulevares reflejan la inmensa prosperidad derivada del control de las rutas comerciales marítimas mundiales.",
+                lore2: "Con el descubrimiento del Hextech por Jayce Talis y Viktor, Piltover entró en una era dorada de ciencia mágica. Sin embargo, esta supremacía tecnológica desenfrenada ha ampliado el abismo moral entre sus consejeros gobernantes y los ciudadanos destituidos que viven directamente bajo sus pies.",
+                ruler: "El consejo de Piltover",
+                commodity: "Hextech & Comercio Global"
+            },
+            zaun: {
+                name: "Zaun",
+                titleDesc: "LA CIUDAD SUBTERRANEA",
+                tag: "NUCLEO INDUSTRIAL · LABORATORIOS ILEGALES",
+                thumbImg: "Images/thumbs/raf,360x360,075,t,fafafa_ca443f4786.jpg",
+                landscapeImg: "Images/thumbs/raf,360x360,075,t,fafafa_ca443f4786.jpg",
+                audioTrack: "Music/zaun_theme.mp3",
+                audioLabel: "REPRODUCIR TEMA DE ZAUN",
+                lore1: "En lo profundo de los cañones asfixiantes bajo Piltover se encuentra Zaun: una frontera industrial subterránea iluminada por luces de neón, donde carroñeros, inventores marginados y barones químicos luchan por sobrevivir en medio de los efluentes tóxicos y corrosivos conocidos como el «Gris de Zaun».",
+                lore2: "Mientras Piltover reprime las investigaciones peligrosas, Zaun fomenta la innovación sin regulaciones. Impulsada por la ambición de Silco de crear una nación soberana —la «Nación de Zaun»— y por la transformación del suero mutagénico «Shimmer» en un arma, la Ciudad Subterránea es un polvorín ideológico a la espera de una chispa.",
+                ruler: "Sindicato de los barones químicos / Silco",
+                commodity: "Shimmer, Chemtech & Industria pesada."
+            },
+            noxus: {
+                name: "Noxus",
+                titleDesc: "El brutal imperio expansionista de Runaterra",
+                tag: "FUERZA MILITARISTA · POLITICA DESPIADADA",
+                thumbImg: "Images/thumbs/i_p_c_000000,s_630,q_90.jpg",
+                landscapeImg: "Images/thumbs/i_p_c_000000,s_630,q_90.jpg",
+                audioTrack: "Music/noxus_theme.mp3",
+                audioLabel: "REPRODUCIR MARCHA DE NOXUS",
+                lore1: "Lejos a través del mar se encuentra Noxus—un imperio militarista y expansionista construido sobre granito negro y una meritoria despiadada. En Noxus, tu linaje, riqueza y derecho de nacimiento no significan nada; lo único que importa es tu fuerza bruta y tu contribución al dominio del imperio.",
+                lore2: "Representada en Piltover a través del poderoso clan Medarda, la influencia noxiana lanza una sombra ensangrentada sobre la política local. Mientras Ambessa Medarda llega para asegurar armamento Hextech para la supervivencia de su familia en casa, el pragmatismo noxiano amenaza con convertir la discordia civil en una guerra total.",
+                ruler: "El Consejo Trifarix / Ambessa Medarda",
+                commodity: "Guerra, Hierro Negro & Fuerza de trabajo cruda"
+            }
+        };
+
+        // Cache DOM elements
+        const rosterView = document.getElementById('roster-view');
+        const dossierView = document.getElementById('dossier-view');
+
+        const dossierImg = document.getElementById('dossier-img');
+        const dossierName = document.getElementById('dossier-name');
+        const dossierTitleDesc = document.getElementById('dossier-title-desc');
+        const dossierTag = document.getElementById('dossier-tag');
+        const dossierLore1 = document.getElementById('dossier-lore-1');
+        const dossierLore2 = document.getElementById('dossier-lore-2');
+        const dossierRuler = document.getElementById('dossier-ruler');
+        const dossierCommodity = document.getElementById('dossier-commodity');
+
+        const audio = document.getElementById('region-audio');
+        const musicBtn = document.getElementById('music-btn');
+        const musicLabel = document.getElementById('music-label');
+
+        /* ==========================================================================
+           ROUTER: SWITCHES VIEWS BASED ON URL HASH (#piltover, #zaun, #noxus)
+           ========================================================================== */
+            function handleRouting() {
+                const rawHash = window.location.hash.toLowerCase().replace('#', '');
+
+                if (rawHash && regionsData[rawHash]) {
+                    const region = regionsData[rawHash];
+
+                    // Populate dossier data
+                    dossierImg.src = region.landscapeImg;
+                    dossierImg.alt = region.name;
+                    dossierName.textContent = region.name;
+                    dossierTitleDesc.textContent = region.titleDesc;
+                    dossierTag.textContent = region.tag;
+                    dossierLore1.textContent = region.lore1;
+                    dossierLore2.textContent = region.lore2;
+                    dossierRuler.textContent = region.ruler;
+                    dossierCommodity.textContent = region.commodity;
+
+                    // Update active tab buttons
+                    document.querySelectorAll('.dossier-quick-tabs a').forEach(tab => tab.classList.remove('active-tab'));
+                    const activeTab = document.getElementById(`tab-${rawHash}`);
+                    if (activeTab) activeTab.classList.add('active-tab');
+
+                    // REVEAL THE MUSIC BUTTON ONCE DOSSIER IS OPEN
+                    musicBtn.classList.remove('is-hidden');
+
+                    // Swap regional audio
+                    loadAndPlayAudio(region.audioTrack, region.audioLabel);
+
+                    // View Toggle
+                    rosterView.hidden = true;
+                    dossierView.hidden = false;
+                } else {
+                    // Show 3-card roster
+                    rosterView.hidden = false;
+                    dossierView.hidden = true;
+                    // HIDE THE MUSIC BUTTON ON ROSTER SCREEN
+                    musicBtn.classList.add('is-hidden');
+                    stopAudio();
+                }
+            }
+        /* ==========================================================================
+           AUDIO CONTROLLER
+           ========================================================================== */
+            function loadAndPlayAudio(trackSrc, labelText) {
+                audio.src = trackSrc;
+                audio.load(); // Forces browser to load the new file buffer cleanly
+                musicLabel.textContent = labelText;
+                audio.play().then(() => {
+                    musicBtn.classList.add('playing');
+                }).catch(() => {
+                    musicBtn.classList.remove('playing');
+                    musicLabel.textContent = labelText;
+                });
+            }
+
+            function stopAudio() {
+                audio.pause();
+                audio.currentTime = 0;
+                musicBtn.classList.remove('playing');
+                musicBtn.classList.add('is-hidden'); // Keep hidden
+                musicLabel.textContent = "PLAY SOUND";
+            }
+
+            musicBtn.addEventListener('click', () => {
+                if (audio.paused) {
+                    audio.play();
+                    musicBtn.classList.add('playing');
+                } else {
+                    audio.pause();
+                    musicBtn.classList.remove('playing');
+                }
+            });
+
+            // Listen for internal or external hash changes (#zaun -> #piltover)
+            window.addEventListener('hashchange', handleRouting);
+            window.addEventListener('DOMContentLoaded', handleRouting);
+    </script>
+</body>
+</html>
