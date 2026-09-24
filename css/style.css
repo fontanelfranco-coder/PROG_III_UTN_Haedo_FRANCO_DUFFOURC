@@ -491,6 +491,7 @@
             order: 3;
             width: 100%;
             margin-top: 1rem;
+            flex-wrap: wrap;
         }
 
         .main-nav ul {
@@ -921,6 +922,7 @@
 
     /* 6. Responsive Adjustments for Mobile & Tablets */
     @media (max-width: 900px) {
+
         .hud-top {
             padding: 1.5rem;
         }
