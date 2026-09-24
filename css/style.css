@@ -925,6 +925,21 @@
 
         .hud-top {
             padding: 1.5rem;
+            flex-wrap: wrap;
+            row-gap: 1rem;
+        }
+
+        .hud-top .main-nav {
+            order: 3;
+            flex: 1 0 100%;
+            width: 100%;
+            margin-top: 0;
+        }
+
+        .hud-top .main-nav ul {
+            justify-content: center;
+            flex-wrap: wrap;
+            row-gap: 0.75rem;
         }
         
         .hud-bottom {
