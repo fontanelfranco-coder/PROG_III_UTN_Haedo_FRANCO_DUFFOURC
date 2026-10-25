@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Fonta\\OneDrive\\Documents\\Coding\\PROG_III_UTN_Haedo_FRANCO_DUFFOURC\\Banco_Project\\TP mi_banco.csproj": {}
+    "C:\\Users\\Fonta\\OneDrive\\Documents\\Coding\\PROG_III_UTN_Haedo_FRANCO_DUFFOURC\\Banco_Project\\Banco_Project.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Fonta\\OneDrive\\Documents\\Coding\\PROG_III_UTN_Haedo_FRANCO_DUFFOURC\\Banco_Project\\TP mi_banco.csproj": {
+    "C:\\Users\\Fonta\\OneDrive\\Documents\\Coding\\PROG_III_UTN_Haedo_FRANCO_DUFFOURC\\Banco_Project\\Banco_Project.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Fonta\\OneDrive\\Documents\\Coding\\PROG_III_UTN_Haedo_FRANCO_DUFFOURC\\Banco_Project\\TP mi_banco.csproj",
-        "projectName": "TP mi_banco",
-        "projectPath": "C:\\Users\\Fonta\\OneDrive\\Documents\\Coding\\PROG_III_UTN_Haedo_FRANCO_DUFFOURC\\Banco_Project\\TP mi_banco.csproj",
+        "projectUniqueName": "C:\\Users\\Fonta\\OneDrive\\Documents\\Coding\\PROG_III_UTN_Haedo_FRANCO_DUFFOURC\\Banco_Project\\Banco_Project.csproj",
+        "projectName": "Banco_Project",
+        "projectPath": "C:\\Users\\Fonta\\OneDrive\\Documents\\Coding\\PROG_III_UTN_Haedo_FRANCO_DUFFOURC\\Banco_Project\\Banco_Project.csproj",
         "packagesPath": "C:\\Users\\Fonta\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Fonta\\OneDrive\\Documents\\Coding\\PROG_III_UTN_Haedo_FRANCO_DUFFOURC\\Banco_Project\\obj\\",
         "projectStyle": "PackageReference",
@@ -48,7 +48,7 @@
           "dependencies": {
             "MySql.Data": {
               "target": "Package",
-              "version": "[9.7.0, )"
+              "version": "[26.10.0, )"
             }
           },
           "imports": [

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Tarjetas - Ingreso</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 font-sans min-h-screen flex flex-col justify-between">
+
+<header class="bg-[#004691] text-white text-center py-4 shadow-md">
+    <h1 class="text-xl font-semibold">Mis <span class="font-bold">Tarjetas</span></h1>
+</header>
+
+<main class="flex-grow flex flex-col md:flex-row items-stretch">
+    <div class="hidden md:flex md:w-1/2 bg-gradient-to-tr from-gray-200 to-gray-50 flex-col justify-center px-16 relative overflow-hidden">
+        <div class="z-10">
+            <p class="text-gray-500 text-lg">Mis Tarjetas</p>
+            <h2 class="text-[#004691] text-4xl font-bold mt-2 leading-tight">Consultá tus liquidaciones en tiempo real.</h2>
+        </div>
+    </div>
+    
+    <div class="w-full md:w-1/2 flex items-center justify-center p-8 bg-white">
+        <div class="max-w-md w-full">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Ingresar a tu cuenta</h2>
+            
+            <form action="ingreso.php" method="POST" class="space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-500 uppercase mb-1">Tipo de doc.</label>
+                        <select name="tipo_doc" class="w-full p-3 border border-gray-300 rounded focus:outline-none focus:border-blue-500 bg-gray-50 text-gray-700">
+                            <option value="DNI">DNI</option>
+                            <option value="PASAPORTE">Pasaporte</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-500 uppercase mb-1">Documento</label>
+                        <input type="text" name="documento" required class="w-full p-3 border border-gray-300 rounded focus:outline-none focus:border-blue-500 bg-gray-50">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-gray-500 uppercase mb-1">Usuario Web</label>
+                    <input type="text" name="usuario" required class="w-full p-3 border border-gray-300 rounded focus:outline-none focus:border-blue-500 bg-gray-50">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-gray-500 uppercase mb-1">Contraseña</label>
+                    <input type="password" name="password" required class="w-full p-3 border border-gray-300 rounded focus:outline-none focus:border-blue-500 bg-gray-50">
+                </div>
+
+                <button type="submit" name="ingresar" class="w-full bg-[#004691] hover:bg-blue-800 text-white font-medium py-3 rounded-full mt-6 transition duration-200">
+                    Ingresar
+                </button>
+            </form>
+
+            <div class="mt-6 text-center space-y-2 text-xs">
+                <p><a href="registro.html" class="text-[#004691] font-semibold hover:underline">¿No tenés una cuenta? Registrate</a></p>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="bg-gray-50 text-[10px] text-gray-500 text-center p-4 border-t border-gray-200">
+    Portal Oficial de Consultas de Liquidaciones Progra3card.
+</footer>
+
+</body>
+</html>
