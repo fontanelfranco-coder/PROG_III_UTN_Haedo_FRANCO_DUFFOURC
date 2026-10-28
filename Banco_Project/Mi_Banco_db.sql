@@ -57,6 +57,7 @@ CREATE TABLE IF NOT EXISTS consultas (
     email VARCHAR(100) NOT NULL,
     categoria ENUM('Alta', 'Baja', 'Mensaje') NOT NULL,
     mensaje TEXT NOT NULL,
+    resuelto ENUM('Si', 'No') DEFAULT 'No',
     fecha_envio TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
