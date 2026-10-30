@@ -1,0 +1,24 @@
+CardTracker - Instalación en XAMPP
+==================================
+
+1. Copiá la carpeta "cardtracker" dentro de C:\xampp\htdocs\
+   (borrá o mové antes los archivos de la versión anterior).
+
+2. Abrí phpMyAdmin (http://localhost/phpmyadmin), pestaña "Importar",
+   y cargá el archivo mi_banco_db.sql.
+   ATENCIÓN: borra y vuelve a crear las tablas de mi_banco_db.
+
+3. Entrá a http://localhost/cardtracker/
+
+Usuarios de prueba (tipo de documento: DNI)
+-------------------------------------------
+Rol            Documento   Usuario    Contraseña
+Administrador  11111111    admin      admin123
+General        20123456    carlos85   clave123
+General        30987654    anamar     clave123
+
+Si tu MySQL tiene otra contraseña o nombre de base, cambialo en
+includes/config.php (es el único lugar donde está).
+
+Requisito: PHP 8 con las extensiones pdo_mysql y mbstring
+(ambas vienen activadas en XAMPP).
