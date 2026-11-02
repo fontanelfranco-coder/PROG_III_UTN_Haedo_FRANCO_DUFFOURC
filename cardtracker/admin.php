@@ -21,7 +21,7 @@ $porRed = db()->query("SELECT red, COUNT(*) AS cantidad FROM tarjetas GROUP BY r
 $maxRed = $porRed ? max(array_column($porRed, 'cantidad')) : 0;
 
 // Últimas consultas sin resolver
-$ultimas = db()->query("SELECT id_consulta, nombre, categoria, fecha_envio FROM consultas
+$ultimas = db()->query("SELECT id_consulta, nombre, LEFT(mensaje, 60) AS extracto, fecha_envio FROM consultas
                         WHERE resuelto = 'No' ORDER BY fecha_envio ASC LIMIT 4")->fetchAll();
 
 encabezado('Panel de administración', 'panel');
@@ -66,7 +66,7 @@ encabezado('Panel de administración', 'panel');
                     <?php foreach ($ultimas as $q): ?>
                         <tr>
                             <td><strong><?= e($q['nombre']) ?></strong></td>
-                            <td><span class="categoria categoria--<?= strtolower($q['categoria']) ?>"><?= e($q['categoria']) ?></span></td>
+                            <td class="texto-suave chico"><?= e($q['extracto']) ?>…</td>
                             <td class="texto-suave chico numero"><?= date('d/m/Y H:i', strtotime($q['fecha_envio'])) ?></td>
                         </tr>
                     <?php endforeach; ?>

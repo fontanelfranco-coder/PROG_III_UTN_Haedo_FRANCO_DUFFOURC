@@ -26,8 +26,6 @@ $sql = $vista === 'pendientes'
     : "SELECT * FROM consultas WHERE resuelto = 'Si' ORDER BY fecha_envio DESC LIMIT 50";
 $consultas = db()->query($sql)->fetchAll();
 
-$textoCategoria = ['Alta' => 'Alta de tarjeta', 'Baja' => 'Baja', 'Mensaje' => 'Consulta general'];
-
 encabezado('Consultas', 'consultas');
 ?>
 
@@ -54,11 +52,11 @@ encabezado('Consultas', 'consultas');
                         <strong><?= e($c['nombre']) ?></strong>
                         <span><?= e($c['email']) ?></span>
                     </div>
-                    <span class="categoria categoria--<?= strtolower($c['categoria']) ?>"><?= e($textoCategoria[$c['categoria']] ?? $c['categoria']) ?></span>
+                    <span class="chico texto-suave">Recibida el <?= date('d/m/Y \a \l\a\s H:i', strtotime($c['fecha_envio'])) ?></span>
                 </div>
                 <p class="consulta__mensaje"><?= e($c['mensaje']) ?></p>
                 <div class="consulta__pie">
-                    <span class="chico texto-suave">Recibida el <?= date('d/m/Y \a \l\a\s H:i', strtotime($c['fecha_envio'])) ?></span>
+                    <span></span>
                     <div class="acciones">
                         <a class="accion" href="mailto:<?= e($c['email']) ?>?subject=<?= rawurlencode('Respuesta a tu consulta en CardTracker') ?>"><?= icono('correo') ?>Responder por correo</a>
                         <form method="POST">

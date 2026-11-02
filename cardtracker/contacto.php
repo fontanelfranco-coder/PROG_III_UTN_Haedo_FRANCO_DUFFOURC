@@ -20,13 +20,7 @@ if ($esCliente) {
     $email = $u['email'];
 }
 
-$categorias = [
-    'Alta'    => 'Quiero agregar una tarjeta o un banco nuevo',
-    'Baja'    => 'Quiero dar de baja una tarjeta o mi cuenta',
-    'Mensaje' => 'Otra consulta',
-];
 $errores = [];
-$categoria = $_GET['motivo'] ?? '';
 $mensaje = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -43,9 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($nombre === '' || mb_strlen($nombre) > 100) $errores[] = 'Ingresá tu nombre.';
         if (!filter_var($email, FILTER_VALIDATE_EMAIL) || mb_strlen($email) > 100) $errores[] = 'Ingresá un correo válido para poder responderte.';
     }
-    $categoria = $_POST['categoria'] ?? '';
     $mensaje = trim($_POST['mensaje'] ?? '');
-    if (!array_key_exists($categoria, $categorias)) $errores[] = 'Elegí el motivo de la consulta.';
     if (mb_strlen($mensaje) < 10 || mb_strlen($mensaje) > 2000) $errores[] = 'Escribí tu consulta (entre 10 y 2000 caracteres).';
 
     // Límite simple: una consulta cada 30 segundos por sesión
@@ -54,12 +46,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (!$errores) {
-        db()->prepare('INSERT INTO consultas (nombre, email, categoria, mensaje) VALUES (:n, :e, :c, :m)')
-            ->execute([':n' => $nombre, ':e' => $email, ':c' => $categoria, ':m' => $mensaje]);
+        db()->prepare('INSERT INTO consultas (nombre, email, mensaje) VALUES (:n, :e, :m)')
+            ->execute([':n' => $nombre, ':e' => $email, ':m' => $mensaje]);
         $_SESSION['ultima_consulta'] = time();
 
         // Aviso por mail al equipo (en localhost no sale sin un servidor SMTP configurado)
-        $asunto = 'Nueva consulta web: ' . $categoria;
+        // Se quitan los saltos de línea para que nadie pueda inyectar cabeceras en el mail
+        $asunto = 'Nueva consulta web de ' . str_replace(["\r", "\n"], ' ', $nombre);
         $cuerpo = "De: $nombre <$email>\n\n$mensaje";
         @mail('admin@cardtracker.com', $asunto, $cuerpo, 'Reply-To: ' . str_replace(["\r", "\n"], '', $email));
 
@@ -111,16 +104,6 @@ encabezado('Contacto', 'contacto');
                     </div>
                 </div>
             <?php endif; ?>
-
-            <div class="campo">
-                <label for="categoria">Motivo</label>
-                <select name="categoria" id="categoria" required>
-                    <option value="" disabled <?= $categoria === '' ? 'selected' : '' ?>>Elegí una opción</option>
-                    <?php foreach ($categorias as $valor => $texto): ?>
-                        <option value="<?= $valor ?>" <?= $categoria === $valor ? 'selected' : '' ?>><?= e($texto) ?></option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
 
             <div class="campo">
                 <label for="mensaje">Tu consulta</label>

@@ -205,7 +205,7 @@ a:hover { color: var(--c-primario-hover); }
 .formulario { display: grid; gap: 1rem; }
 .fila { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); }
 
-.campo { display: grid; gap: .35rem; }
+.campo { display: grid; gap: .35rem; align-content: start; }
 .campo label, .campo__titulo { font-size: .875rem; font-weight: 600; color: var(--c-tinta); }
 .campo input, .campo select, .campo textarea {
     width: 100%;
@@ -576,10 +576,6 @@ a:hover { color: var(--c-primario-hover); }
 .consulta__mensaje { margin: 0; padding: .9rem 1rem; background: var(--c-superficie-2); border-radius: 10px; white-space: pre-line; }
 .consulta__pie { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: .5rem; }
 .consulta__pie form { margin: 0; }
-.categoria { font-size: .8rem; font-weight: 600; padding: .2rem .55rem; border-radius: var(--r-insignia); }
-.categoria--alta { background: var(--c-verde-suave); color: var(--c-verde); }
-.categoria--baja { background: var(--c-rosa-suave); color: var(--c-rosa); }
-.categoria--mensaje { background: var(--c-lila-suave); color: #4B4396; }
 
 /* ---------- 20. Perfil ---------- */
 .datos-perfil { display: grid; grid-template-columns: auto 1fr; gap: .55rem 1.25rem; margin: 0; }

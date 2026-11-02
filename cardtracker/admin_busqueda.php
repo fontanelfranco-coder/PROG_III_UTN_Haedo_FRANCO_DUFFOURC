@@ -40,11 +40,11 @@ $tablas = [
     ],
     'consultas' => [
         'titulo'  => 'Consultas',
-        'sql'     => "SELECT id_consulta AS 'N.º', nombre AS 'Nombre', email AS 'Correo', categoria AS 'Motivo',
+        'sql'     => "SELECT id_consulta AS 'N.º', nombre AS 'Nombre', email AS 'Correo',
                              LEFT(mensaje, 80) AS 'Mensaje', IF(resuelto = 'Si', 'Resuelta', 'Pendiente') AS 'Estado',
                              DATE_FORMAT(fecha_envio, '%d/%m/%Y') AS 'Fecha'
                       FROM consultas",
-        'buscar'  => ['nombre', 'email', 'categoria', 'mensaje'],
+        'buscar'  => ['nombre', 'email', 'mensaje'],
         'orden'   => 'fecha_envio DESC',
         'ocultas' => '',
     ],

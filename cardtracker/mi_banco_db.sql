@@ -64,7 +64,6 @@ CREATE TABLE consultas (
     id_consulta INT AUTO_INCREMENT PRIMARY KEY,
     nombre      VARCHAR(100) NOT NULL,
     email       VARCHAR(100) NOT NULL,
-    categoria   ENUM('Alta', 'Baja', 'Mensaje') NOT NULL DEFAULT 'Mensaje',
     mensaje     TEXT NOT NULL,
     resuelto    ENUM('Si', 'No') NOT NULL DEFAULT 'No',
     fecha_envio TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -79,7 +78,7 @@ CREATE TABLE consultas (
 INSERT INTO usuarios (documento, tipo_doc, nombre, apellido, fecha_nacimiento, email, usuario, password_hash, rol) VALUES
 ('11111111', 'DNI', 'Admin',  'Sistema',  '1980-01-01', 'admin@cardtracker.com',    'admin',    '$2y$10$g/lzim2t38zFMY/D0XmspeRagriP6gl5kGKWXlMQrM4otH/IDdbFK', 'Administrador'),
 ('20123456', 'DNI', 'Carlos', 'Gómez',    '1985-04-12', 'carlos.gomez@example.com', 'carlos85', '$2y$10$I4yIYNHjcbEm6Taeni/b6uBb8iteoWT4AKIt2htZZ6Ayl8.Uqc39O', 'General'),
-('30987654', 'DNI', 'Ana',    'Martínez', '1992-09-23', 'ana.mtz@example.com',      'anamar',   '$2y$10$I4yIYNHjcbEm6Taeni/b6uBb8iteoWT4AKIt2htZZ6Ayl8.Uqc39O', 'General');
+('30987654', 'DNI', 'Ana',    'Martínez', '1992-09-23', 'ana.mtz@example.com',      'anamar',   '$2y$10$qiTrbRLPaO3J7pQX64Jni.tAUobvVFdWCnmg2soF4tE.5ResQ67oW', 'General');
 
 INSERT INTO tarjetas (id_tarjeta, dni_titular, banco_emisor, red, ultimos4, alias, estado) VALUES
 (1, '20123456', 'Banco Galicia',   'Visa',             '9876', 'Gastos del súper', 'Activa'),
@@ -110,6 +109,6 @@ INSERT INTO liquidaciones (id_tarjeta, periodo, fecha_cierre, fecha_vencimiento,
 (5, DATE_FORMAT(CURDATE() - INTERVAL 1 MONTH, '%Y-%m'), CURDATE() - INTERVAL 1 MONTH - INTERVAL 2 DAY, CURDATE() - INTERVAL 1 MONTH + INTERVAL 13 DAY, 58750.00, 11750.00, 'Pagado', CURDATE() - INTERVAL 1 MONTH + INTERVAL 11 DAY),
 (5, DATE_FORMAT(CURDATE() - INTERVAL 0 MONTH, '%Y-%m'), CURDATE() - INTERVAL 0 MONTH - INTERVAL 2 DAY, CURDATE() - INTERVAL 0 MONTH + INTERVAL 13 DAY, 73990.00, 14800.00, 'Pendiente', NULL);
 
-INSERT INTO consultas (nombre, email, categoria, mensaje) VALUES
-('Juan Pérez', 'juanperez@mail.com', 'Mensaje', 'Hola, quisiera saber si puedo cargar tarjetas de un banco que no figura en la lista. Gracias.'),
-('Ana Martínez', 'ana.mtz@example.com', 'Baja', 'Quiero dar de baja la tarjeta Visa terminada en 2231 porque la voy a cerrar.');
+INSERT INTO consultas (nombre, email, mensaje) VALUES
+('Juan Pérez', 'juanperez@mail.com', 'Hola, quisiera saber si puedo cargar tarjetas de un banco que no figura en la lista. Gracias.'),
+('Ana Martínez', 'ana.mtz@example.com', 'No me llegan los avisos de vencimiento de mi Visa terminada en 2231, ¿dónde los veo?');
